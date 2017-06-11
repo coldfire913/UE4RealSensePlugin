@@ -131,7 +131,7 @@ void RealSenseImpl::CameraThread()
 	midFrame->number = 0;
 	bgFrame->number = 0;
 
-	pxcStatus status = senseManager->Init();
+	auto status = senseManager->Init();
 	RS_LOG_STATUS(status, "SenseManager Initialized")
 
 	assert(status == PXC_STATUS_NO_ERROR);
@@ -338,7 +338,7 @@ void RealSenseImpl::SetColorCameraResolution(EColorResolution resolution)
 {
 	colorResolution = GetEColorResolutionValue(resolution);
 
-	status = senseManager->EnableStream(PXCCapture::StreamType::STREAM_TYPE_COLOR, 
+	auto status = senseManager->EnableStream(PXCCapture::StreamType::STREAM_TYPE_COLOR, 
 										colorResolution.width, 
 										colorResolution.height, 
 										colorResolution.fps);
@@ -357,7 +357,7 @@ void RealSenseImpl::SetColorCameraResolution(EColorResolution resolution)
 void RealSenseImpl::SetDepthCameraResolution(EDepthResolution resolution)
 {
 	depthResolution = GetEDepthResolutionValue(resolution);
-	status = senseManager->EnableStream(PXCCapture::StreamType::STREAM_TYPE_DEPTH, 
+	auto status = senseManager->EnableStream(PXCCapture::StreamType::STREAM_TYPE_DEPTH, 
 										depthResolution.width, 
 										depthResolution.height, 
 										depthResolution.fps);
@@ -424,7 +424,7 @@ void RealSenseImpl::ConfigureScanning(EScan3DMode scanningMode, bool bSolidify, 
 
 	config.startScan = false;
 
-	status = p3DScan->SetConfiguration(config);
+	auto status = p3DScan->SetConfiguration(config);
 	assert(status == PXC_STATUS_NO_ERROR);
 }
 
@@ -438,7 +438,7 @@ void RealSenseImpl::SetScanningVolume(FVector boundingBox, int32 resolution)
 	area.shape.depth = boundingBox.Z;
 	area.resolution = resolution;
 
-	status = p3DScan->SetArea(area);
+	auto status = p3DScan->SetArea(area);
 	assert(status == PXC_STATUS_NO_ERROR);
 }
 

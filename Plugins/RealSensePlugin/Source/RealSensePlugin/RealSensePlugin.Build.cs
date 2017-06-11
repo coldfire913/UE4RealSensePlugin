@@ -31,13 +31,19 @@ namespace UnrealBuildTool.Rules
             PrivateIncludePaths.AddRange(new string[] { "RealSensePlugin/Private" });
 
             string RealSenseDirectory = Environment.GetEnvironmentVariable("RSSDK_DIR");
-            string RealSenseIncludeDirectory = RealSenseDirectory + "include";
-            string RealSenseLibrary32Directory = RealSenseDirectory + "lib\\Win32\\libpxc.lib";
-            string RealSenseLibrary64Directory = RealSenseDirectory + "lib\\x64\\libpxc.lib";
-
+            string RealSenseIncludeDirectory = Path.Combine(RealSenseDirectory,"include");
             PublicIncludePaths.Add(RealSenseIncludeDirectory);
-            PublicAdditionalLibraries.Add(RealSenseLibrary32Directory);
-            PublicAdditionalLibraries.Add(RealSenseLibrary64Directory);
+
+            if (Target.Platform == UnrealTargetPlatform.Win32)
+            {
+                string RealSenseLibrary32Directory = Path.Combine(RealSenseDirectory, "lib\\Win32\\libpxc.lib");
+                PublicAdditionalLibraries.Add(RealSenseLibrary32Directory);
+            }
+            else if (Target.Platform == UnrealTargetPlatform.Win64)
+            {
+                string RealSenseLibrary64Directory = Path.Combine(RealSenseDirectory, "lib\\x64\\libpxc.lib");
+                PublicAdditionalLibraries.Add(RealSenseLibrary64Directory);
+            }
         }
 	}
 }

@@ -25,6 +25,11 @@
 #include "RealSenseUtils.h"
 #include "RealSenseBlueprintLibrary.h"
 #include "PXCSenseManager.h"
+#include "PXC3DSeg.h"
+#include "RealSense/Face/FaceModule.h"
+
+typedef Intel::RealSense::Face::FaceConfiguration	PXCFaceConfiguration;
+typedef Intel::RealSense::Face::FaceData			PXCFaceData;
 
 // Stores all relevant data computed from one frame of RealSense camera data.
 // Advice: Use this structure in a multiple-buffer configuration to share 
@@ -174,8 +179,6 @@ private:
 	std::unique_ptr<PXCCapture::Device, RealSenseDeleter> device;
 
 	PXCCapture::DeviceInfo deviceInfo;
-	pxcStatus status;  // Status ID used by RSSDK functions
-
 	// SDK Module handles
 
 	std::unique_ptr<PXC3DScan, RealSenseDeleter> p3DScan;
