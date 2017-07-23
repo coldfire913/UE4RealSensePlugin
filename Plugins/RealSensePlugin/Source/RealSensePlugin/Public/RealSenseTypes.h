@@ -67,18 +67,20 @@ enum class ERealSensePixelFormat : uint8 {
 // Supported RealSense camera models
 UENUM(BlueprintType) 
 enum class ECameraModel : uint8 {
-	None = 0 UMETA(DisplayName = " "),
-	F200 = 1 UMETA(DisplayName = "Front-Facing (F200)"),
-	SR300 = 2 UMETA(DisplayName = "Short-Range (SR300)"),
-	R200 = 3 UMETA(DisplayName = "World-Facing (R200)"),
-	Other = 4 UMETA(DisplayName = "Unknown Camera Model")
+	None = 0	UMETA(DisplayName = " "),
+	F200 = 1	UMETA(DisplayName = "Front-Facing (F200)"),
+	SR300 = 2	UMETA(DisplayName = "Short-Range (SR300)"),
+	R200 = 3	UMETA(DisplayName = "World-Facing (R200)"),
+	Other = 4	UMETA(DisplayName = "Unknown Camera Model")
 };
 
 // Supported modes for the 3D Scanning middleware
 UENUM(BlueprintType) 
 enum class EScan3DMode : uint8 {
 	OBJECT = 0 UMETA(DisplayName = "Object"),
-	FACE = 1 UMETA(DisplayName = "Face")
+	FACE = 1 UMETA(DisplayName = "Face"), 
+	HEAD = 2 UMETA(DisplayName = "Head"),
+	BODY = 3 UMETA(DisplayName = "Body")
 };
 
 // File types supported by the 3D Scanning middleware for saving scans 
